@@ -1,0 +1,15 @@
+def jobs(title, description, skills) :
+
+    if os.path.exists("./jobs.txt"):
+        with open("./jobs.txt", "r") as f:
+            jobs = json.load(f)
+        job_id = jobs[-1][0] + 1
+        jobs.append([job_id, title, description, skills])
+        with open("./jobs.txt", "w") as f:
+            json.dump(jobs, f)
+
+    else:
+        jobs = []
+        jobs.append([1, title, description, skills])
+        with open("./jobs.txt", "x") as f:
+            json.dump(jobs, f)
